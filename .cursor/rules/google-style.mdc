@@ -1,0 +1,12 @@
+---
+description: Google Python and JavaScript style in this workshop repo
+alwaysApply: true
+---
+
+# Google style
+
+- Python: https://google.github.io/styleguide/pyguide.html — 4 spaces,
+  80 columns, Google docstrings, `snake_case` / `CapWords`.
+- JavaScript: https://google.github.io/styleguide/jsguide.html
+- Details: repo `STYLE.md` and `pyproject.toml` (Ruff pydocstyle google).
+- Do not invent a second style guide.

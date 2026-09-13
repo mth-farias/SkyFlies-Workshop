@@ -1,0 +1,20 @@
+---
+description: Session files live under .cursor/workspace; procedures stay in fly-* skills
+alwaysApply: true
+---
+
+# Workspace
+
+Session files live under `.cursor/workspace/` (handoffs, context, journals,
+plans, artifacts, archive). Procedures belong in `fly-*` skills, not in
+`AGENTS.md`.
+
+- Prefer `.cursor/workspace/` when it exists.
+- Do not invent a second journal or handoff tree.
+- Do not put session files under `.cursor/skills/` or `~/.cursor/plans/`.
+- Start a cold session with `fly-onboard`; confirm non-trivial work with
+  `fly-confirm-align`; close with `fly-handoff`.
+- `.cursor/skills`, `rules`, and `hooks` are tracked. Journals, artifacts,
+  archive, and local plans are gitignored (READMEs stay). `AGENTS.md` is
+  the tracked contract.
+- Write only in this workshop repo. Do not edit a sibling SkyFlies tree.

@@ -1,0 +1,35 @@
+---
+description: Prefer one `/multitask` worker; structured brief and return
+alwaysApply: true
+---
+
+# Subagent coordination
+
+- At most **one** subagent at a time. Never launch a second while another is running or may still complete.
+- Prefer `/multitask` for one worker when the slice is tool-noisy or multi-file (search, tests, explore, bounded implement) (`run_in_background` if Multitask Mode requires it). Parent writes a self-contained brief, orchestrates, and reviews; the worker does that slice. Keep judgment, review, and tiny or one-shot edits in the parent. Never click **Build in Parallel**.
+- Do not decide a subagent is frozen. Quiet or slow output is not a freeze.
+- Only the **user** may declare a freeze. Then interrupt/stop that agent first; only after it is stopped, launch a replacement if they asked.
+- If the user asks for parallel workers, run one and explain the cap in one sentence.
+- After a subagent completes, synthesize in the foreground or resume the same agent id for a narrow gap list — do not spawn a duplicate on the same workload.
+
+## Task brief (parent → worker)
+
+Worker starts **clean** (no parent chat). Put current facts in the prompt; do not dump stale repo novels. Include:
+
+1. **Goal** — one sentence
+2. **In / out** — what to change; what not to touch
+3. **Paths** — exact files or dirs
+4. **Locks** — decisions already made
+5. **Verify** — commands to run (or “do not run X”)
+6. **Return** — require the packet below
+
+## Return packet (worker → parent)
+
+Parent sees **only** this final message. Paths, not logs.
+
+- **Status:** done | blocked | partial
+- **Changed:** file paths
+- **Ran:** commands + pass/fail
+- **Leftover:** gaps, skips, resume id if any
+
+<!-- template-version: agent-layer-v3 -->
